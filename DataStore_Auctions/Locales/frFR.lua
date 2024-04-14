@@ -1,5 +1,5 @@
-local L = LibStub("AceLocale-3.0"):NewLocale( "DataStore_Auctions", "frFR" )
-
+local addonName = ...
+local L = DataStore:SetLocale(addonName, "frFR")
 if not L then return end
 
 L["CLEAR_EXPIRED_ITEMS_DISABLED"] = "Les objets expirés restent dans la base de données jusqu'à la prochaine visite du joueur à l'hôtel des ventes."

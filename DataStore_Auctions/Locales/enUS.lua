@@ -1,9 +1,5 @@
-local debug = false
---[===[@debug@
-debug = true
---@end-debug@]===]
-
-local L = LibStub("AceLocale-3.0"):NewLocale("DataStore_Auctions", "enUS", true, debug)
+local addonName = ...
+local L = DataStore:SetDefaultLocale(addonName, "enUS")
 
 L["CLEAR_EXPIRED_ITEMS_DISABLED"] = "Expired items remain in the database until the player next visits the auction house."
 L["CLEAR_EXPIRED_ITEMS_ENABLED"] = "Expired items are automatically deleted from the database."

@@ -14,12 +14,12 @@
 				</Anchors>
 				<Scripts>
 					<OnValueChanged>
-						local L = LibStub("AceLocale-3.0"):GetLocale("DataStore_Auctions")
+						local L = DataStore:GetLocale("DataStore_Auctions")
 						
 						local name = self:GetName()
 						local value = math.floor(self:GetValue())
 						_G[name .. "Text"]:SetText(L["LAST_VISIT_CHECK_LABEL"] .. " (" .. value ..")");
-						DataStore:SetOption("DataStore_Auctions", "CheckLastVisitThreshold", value)
+						DataStore_Auctions_Options.CheckLastVisitThreshold = value
 					</OnValueChanged>
 				</Scripts>
 			</Slider>

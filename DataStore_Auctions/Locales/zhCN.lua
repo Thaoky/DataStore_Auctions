@@ -1,5 +1,3 @@
-local L = LibStub("AceLocale-3.0"):NewLocale( "DataStore_Auctions", "zhCN" )
-
+local addonName = ...
+local L = DataStore:SetLocale(addonName, "zhCN")
 if not L then return end
-
-

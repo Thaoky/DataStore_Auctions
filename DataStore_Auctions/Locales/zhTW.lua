@@ -1,5 +1,5 @@
-local L = LibStub("AceLocale-3.0"):NewLocale( "DataStore_Auctions", "zhTW" )
-
+local addonName = ...
+local L = DataStore:SetLocale(addonName, "zhTW")
 if not L then return end
 
 L["CLEAR_EXPIRED_ITEMS_DISABLED"] = "過期的物品保留在數據庫中，直到玩家下次訪問拍賣場."
