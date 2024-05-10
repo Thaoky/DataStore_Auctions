@@ -124,11 +124,11 @@ DataStore:OnAddonLoaded(addonName, function()
 	auctionsList = DataStore_Auctions_AuctionsList
 	bidsList = DataStore_Auctions_BidsList
 
-	options = DataStore_Auctions_Options
-	
-	options.CheckLastVisit = options.CheckLastVisit or true							-- Check the last auction house visit time or not
-	options.CheckLastVisitThreshold = options.CheckLastVisitThreshold or 15
-	options.AutoClearExpiredItems = options.AutoClearExpiredItems or true		-- Automatically clear expired auctions and bids
+	options = DataStore:SetDefaults("DataStore_Auctions_Options", {
+		CheckLastVisit = true,				-- Check the last auction house visit time or not
+		CheckLastVisitThreshold = 15,
+		AutoClearExpiredItems = true,		-- Automatically clear expired auctions and bids
+	})	
 end)
 
 DataStore:OnPlayerLogin(function()

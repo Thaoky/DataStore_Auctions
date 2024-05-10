@@ -16,7 +16,7 @@ function addon:SetupOptions()
 	
 	-- restore saved options to gui
 	local options = DataStore_Auctions_Options
-	
+
 	f.CheckLastVisit:SetChecked(options.CheckLastVisit)
 	f.AutoClearExpiredItems:SetChecked(options.AutoClearExpiredItems)
 end

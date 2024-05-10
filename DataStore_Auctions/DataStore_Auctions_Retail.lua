@@ -47,11 +47,7 @@ local function ScanAuctions()
 	local numAuctions = C_AuctionHouse.GetNumOwnedAuctions()
 	
 	char.lastUpdate = now
-	char.lastAuctionsScan = nil
-	if numAuctions > 0 then
-		char.lastAuctionsScan = now
-		
-	end
+	char.lastAuctionsScan = now
 	
 	auctionsList[charID] = auctionsList[charID] or {}
 	ClearEntries(auctionsList[charID], AHZone)

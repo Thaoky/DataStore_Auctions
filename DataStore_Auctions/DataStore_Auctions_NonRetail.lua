@@ -145,6 +145,9 @@ DataStore:OnAddonLoaded(addonName, function()
 	DataStore:RegisterModule({
 		addon = addon,
 		addonName = addonName,
+		rawTables = {
+			"DataStore_Auctions_Options"
+		},
 		characterTables = {
 			["DataStore_Auctions_Characters"] = {
 				ClearAuctionEntries = function(character, AHType, AHZone)

@@ -15,11 +15,14 @@
 				<Scripts>
 					<OnValueChanged>
 						local L = DataStore:GetLocale("DataStore_Auctions")
-						
-						local name = self:GetName()
-						local value = math.floor(self:GetValue())
-						_G[name .. "Text"]:SetText(L["LAST_VISIT_CHECK_LABEL"] .. " (" .. value ..")");
-						DataStore_Auctions_Options.CheckLastVisitThreshold = value
+
+						-- in non-retail, the options are not created yet at logon, so this test is required. Clean later.
+						if DataStore_Auctions_Options then
+							local name = self:GetName()
+							local value = math.floor(self:GetValue())
+							_G[name .. "Text"]:SetText(L["LAST_VISIT_CHECK_LABEL"] .. " (" .. value ..")");
+							DataStore_Auctions_Options.CheckLastVisitThreshold = value
+						end
 					</OnValueChanged>
 				</Scripts>
 			</Slider>

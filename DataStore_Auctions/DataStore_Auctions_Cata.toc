@@ -1,4 +1,4 @@
-## Interface: 100207
+## Interface: 40400
 ## Title: DataStore_Auctions
 ## IconTexture: Interface\Icons\garrison_building_storehouse
 
@@ -6,10 +6,10 @@
 ## Author: Thaoky (EU-Marécages de Zangar)
 ## Version: 2024.05.10
 ## Dependencies: DataStore
-## SavedVariables: DataStore_Auctions_Characters, DataStore_Auctions_AuctionsList, DataStore_Auctions_BidsList, DataStore_Auctions_Options
+## SavedVariables: DataStore_Auctions_Characters, DataStore_Auctions_Options
 ## X-Category: Interface Enhancements
 
 Locale.xml
 
-DataStore_Auctions_Retail.lua
-API\Common.lua
+DataStore_Auctions_NonRetail.lua
+Options.xml
