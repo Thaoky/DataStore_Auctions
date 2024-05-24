@@ -97,7 +97,7 @@ local function ScanBids()
 		
 		-- review item.name ? item.quantity ?
 		TableInsert(bidsList[charID], format("%s|%s|%s|%s|%s|%s|%s", 
-			AHZone, itemID, info.quantity or 1, info.bidder or "", info.bidAmount or 0, info.buyoutAmount, info.timeLeft))	
+			AHZone, itemID, info.quantity or 1, info.bidder or "", info.bidAmount or 0, info.buyoutAmount or 0, info.timeLeft))	
 	
 		-- local itemName, _, count, _, _, _, _, _, 
 			-- _, buyoutPrice, bidPrice, _, ownerName = C_AuctionHouse.GetReplicateItemInfo("bidder", i);
