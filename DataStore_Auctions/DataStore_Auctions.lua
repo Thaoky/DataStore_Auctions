@@ -225,4 +225,8 @@ end)
 DataStore:OnPlayerLogin(function()
 	addon:ListenTo("AUCTION_HOUSE_SHOW", OnAuctionHouseShow)
 	addon:ListenTo("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", OnAuctioneerShow)
+	
+	if not isRetail then
+		addon:SetupOptions()
+	end
 end)
