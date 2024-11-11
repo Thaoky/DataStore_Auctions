@@ -46,6 +46,68 @@ local function _GetAuctionHouseItemCount(characterID, searchedID)
 	return count
 end
 
+local function _GetClosestAuctionExpiry(characterID)
+	local value = 0
+	
+	local entries = auctionsList[characterID]
+	
+	if entries then
+		for _, entry in pairs(entries) do
+			local _, _, _, _, _, _, timeLeft = strsplit("|", entry)
+			timeLeft = tonumber(timeLeft)
+			
+			if value == 0 or timeLeft < value then
+				value = timeLeft
+			end
+		end
+		
+		-- Determine the real time left, relative to the last scan
+		local char = allCharacters[characterID]
+		local diff = time() - char.lastAuctionsScan
+		
+		value = value - diff	
+	end
+	
+	return value
+end
+
+local function _GetHighestBuyoutAuction(characterID)
+	local value = 0
+	
+	local entries = auctionsList[characterID]
+	if entries then
+		for _, entry in pairs(entries) do
+			local _, _, _, _, _, buyout = strsplit("|", entry)
+			buyout = tonumber(buyout)
+			
+			if buyout > value then
+				value = buyout
+			end
+		end
+	end
+	
+	return value
+end
+
+local function _GetLowestBuyoutAuction(characterID)
+	local value = 0
+	
+	local entries = auctionsList[characterID]
+	if entries then
+		for _, entry in pairs(entries) do
+			local _, _, _, _, _, buyout = strsplit("|", entry)
+			buyout = tonumber(buyout)
+			
+			if value == 0 or buyout < value then
+				value = buyout
+			end
+		end
+	end
+	
+	return value
+end
+
+
 -- maximum time left in seconds per auction type : [1] = max 30 minutes, [2] = 2 hours, [3] = 12 hours, [4] = more than 12, but max 48 hours
 -- info : https://wowpedia.fandom.com/wiki/API_C_AuctionHouse.GetReplicateItemTimeLeft    (retail)
 -- info : https://wowpedia.fandom.com/wiki/API_GetAuctionItemTimeLeft   (vanilla & LK)
@@ -111,6 +173,9 @@ DataStore:OnAddonLoaded(addonName, function()
 				end,
 				GetAuctionHouseItemCount = _GetAuctionHouseItemCount,
 				GetAuctionHouseItemInfo = _GetAuctionHouseItemInfo,
+				GetClosestAuctionExpiry = _GetClosestAuctionExpiry,
+				GetHighestBuyoutAuction = _GetHighestBuyoutAuction,
+				GetLowestBuyoutAuction = _GetLowestBuyoutAuction,
 			},
 			["DataStore_Auctions_BidsList"] = {
 				GetNumBids = function(characterID)
