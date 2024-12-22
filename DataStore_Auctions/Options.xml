@@ -14,7 +14,7 @@
 				</Anchors>
 				<Scripts>
 					<OnValueChanged>
-						local L = DataStore:GetLocale("DataStore_Auctions")
+						local L = AddonFactory:GetLocale("DataStore_Auctions")
 
 						-- in non-retail, the options are not created yet at logon, so this test is required. Clean later.
 						if DataStore_Auctions_Options then

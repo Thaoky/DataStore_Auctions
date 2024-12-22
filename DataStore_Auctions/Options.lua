@@ -8,7 +8,7 @@ function addon:SetupOptions()
 	DataStore:AddOptionCategory(f, addonName, "DataStore")
 	
 	-- localize options
-	local L = DataStore:GetLocale(addonName)
+	local L = AddonFactory:GetLocale(addonName)
 	
 	DataStoreAuctionsOptions_SliderLastVisit.tooltipText = L["LAST_VISIT_SLIDER_TOOLTIP"]
 	DataStoreAuctionsOptions_SliderLastVisitLow:SetText("10")

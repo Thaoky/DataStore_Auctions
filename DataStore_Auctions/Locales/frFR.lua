@@ -1,5 +1,5 @@
 local addonName = ...
-local L = DataStore:SetLocale(addonName, "frFR")
+local L = AddonFactory:SetLocale(addonName, "frFR")
 if not L then return end
 
 L["CLEAR_EXPIRED_ITEMS_DISABLED"] = "Les objets expirés restent dans la base de données jusqu'à la prochaine visite du joueur à l'hôtel des ventes."

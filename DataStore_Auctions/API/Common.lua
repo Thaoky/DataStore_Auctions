@@ -155,7 +155,7 @@ local function CheckExpiries()
 	end
 end
 
-DataStore:OnAddonLoaded(addonName, function() 
+AddonFactory:OnAddonLoaded(addonName, function() 
 	DataStore:RegisterTables({
 		addon = addon,
 		rawTables = {
@@ -196,7 +196,7 @@ DataStore:OnAddonLoaded(addonName, function()
 	})	
 end)
 
-DataStore:OnPlayerLogin(function()
+AddonFactory:OnPlayerLogin(function()
 	-- check AH expiries 3 seconds later, to decrease the load at startup
 	C_Timer.After(3, CheckExpiries)
 end)

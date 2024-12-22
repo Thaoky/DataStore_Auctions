@@ -196,7 +196,7 @@ local function OnAuctioneerShow(event, interactionType)
 end
 
 
-DataStore:OnAddonLoaded(addonName, function()
+AddonFactory:OnAddonLoaded(addonName, function()
 	DataStore:RegisterModule({
 		addon = addon,
 		addonName = addonName,
@@ -222,7 +222,7 @@ DataStore:OnAddonLoaded(addonName, function()
 	bidsList = DataStore_Auctions_BidsList
 end)
 
-DataStore:OnPlayerLogin(function()
+AddonFactory:OnPlayerLogin(function()
 	addon:ListenTo("AUCTION_HOUSE_SHOW", OnAuctionHouseShow)
 	addon:ListenTo("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", OnAuctioneerShow)
 	
