@@ -128,7 +128,7 @@ local function CheckExpiries()
 			local seconds = time() - character.lastAuctionsScan
 			local days = floor(seconds / 86400)
 			
-			DataStore:Broadcast("DATASTORE_AUCTIONS_NOT_CHECKED_SINCE", character, charID, days, threshold)
+			AddonFactory:Broadcast("DATASTORE_AUCTIONS_NOT_CHECKED_SINCE", character, charID, days, threshold)
 		end
 		
 		-- browse both auctions & bids

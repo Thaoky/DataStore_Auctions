@@ -122,7 +122,7 @@ local function ScanAuctions()
 		auctionsList[charID] = nil
 	end
 	
-	DataStore:Broadcast("DATASTORE_AUCTIONS_UPDATED")
+	AddonFactory:Broadcast("DATASTORE_AUCTIONS_UPDATED")
 end
 
 local function ScanBids()
