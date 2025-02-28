@@ -12,7 +12,8 @@ local DataStore, TableInsert, TableRemove, format, strsplit, tonumber = DataStor
 local GetNumAuctionItems, GetAuctionItemInfo, GetAuctionItemLink, GetAuctionItemTimeLeft = GetNumAuctionItems, GetAuctionItemInfo, GetAuctionItemLink, GetAuctionItemTimeLeft
 local C_Map, C_AuctionHouse, time, date = C_Map, C_AuctionHouse, time, date
 
-local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
+-- Assume that if the new API namespace exists, we can use the retail calls
+local isRetail = _G["C_AuctionHouse"] ~= nil
 
 -- *** Common API ***
 local API_GetNumAuctions = isRetail and C_AuctionHouse.GetNumOwnedAuctions or function() return GetNumAuctionItems("owner") end
