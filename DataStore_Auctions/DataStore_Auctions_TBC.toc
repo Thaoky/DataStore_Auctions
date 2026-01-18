@@ -6,7 +6,7 @@
 ## Author: Thaoky (EU-Marécages de Zangar)
 ## Version: 2026.01.16
 ## Dependencies: DataStore
-## SavedVariables: DataStore_Auctions_Characters, DataStore_Auctions_Options
+## SavedVariables: DataStore_Auctions_Characters, DataStore_Auctions_AuctionsList, DataStore_Auctions_BidsList, DataStore_Auctions_Options
 ## X-Category: Interface Enhancements
 
 Locale.xml
