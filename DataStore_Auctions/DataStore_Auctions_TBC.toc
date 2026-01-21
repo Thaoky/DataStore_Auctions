@@ -1,25 +1,13 @@
-## Interface: 11507
+## Interface: 20505
 ## Title: DataStore_Auctions
 ## IconTexture: Interface\Icons\garrison_building_storehouse
 
 ## Notes: Stores information about character auctions and bids
 ## Author: Thaoky (EU-Marécages de Zangar)
-## Version: 2025.08.21
+## Version: 2026.01.16
 ## Dependencies: DataStore
 ## SavedVariables: DataStore_Auctions_Characters, DataStore_Auctions_AuctionsList, DataStore_Auctions_BidsList, DataStore_Auctions_Options
 ## X-Category: Interface Enhancements
-
-## Category: Libraries
-## Category-deDE: Bibliotheken
-## Category-esES: Bibliotecas
-## Category-esMX: Bibliotecas
-## Category-frFR: Bibliothèques
-## Category-itIT: Librerie
-## Category-koKR: 라이브러리
-## Category-ptBR: Bibliotecas
-## Category-ruRU: Библиотеки
-## Category-zhCN: 函数库
-## Category-zhTW: 函式庫
 
 Locale.xml
 
