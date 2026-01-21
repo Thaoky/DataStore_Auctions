@@ -23,5 +23,6 @@
 
 Locale.xml
 
-DataStore_Auctions_NonRetail.lua
+DataStore_Auctions.lua
+API\Common.lua
 Options.xml
