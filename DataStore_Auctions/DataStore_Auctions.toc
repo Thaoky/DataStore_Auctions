@@ -1,4 +1,4 @@
-## Interface: 120000, 50501
+## Interface: 120000, 50501, 120005
 ## Title: DataStore_Auctions
 ## IconTexture: Interface\Icons\garrison_building_storehouse
 
