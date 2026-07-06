@@ -124,10 +124,15 @@ local function CheckExpiries()
 	
 	for charID, character in pairs(allCharacters) do
 		-- Check if the last auction visit was maybe a very long time ago, and warn the player that he may have missed items..
-		if checkLastVisit and character.lastAuctionsScan then
+		-- Only fire the reminder if the character still has tracked auctions or bids — once everything
+		-- has expired or been cleared, the stale lastAuctionsScan timestamp shouldn't keep nagging.
+		local hasTrackedItems = (auctionsList[charID] and #auctionsList[charID] > 0)
+			or (bidsList[charID] and #bidsList[charID] > 0)
+
+		if checkLastVisit and character.lastAuctionsScan and hasTrackedItems then
 			local seconds = time() - character.lastAuctionsScan
 			local days = floor(seconds / 86400)
-			
+
 			AddonFactory:Broadcast("DATASTORE_AUCTIONS_NOT_CHECKED_SINCE", character, charID, days, threshold)
 		end
 		
