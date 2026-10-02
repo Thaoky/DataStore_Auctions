@@ -12,12 +12,12 @@ local DataStore, TableInsert, TableRemove, format, strsplit, tonumber = DataStor
 local GetNumAuctionItems, GetAuctionItemInfo, GetAuctionItemLink, GetAuctionItemTimeLeft = GetNumAuctionItems, GetAuctionItemInfo, GetAuctionItemLink, GetAuctionItemTimeLeft
 local C_Map, C_AuctionHouse, time, date = C_Map, C_AuctionHouse, time, date
 
--- local isRetail = (WOW_PROJECT_ID == WOW_PROJECT_MAINLINE)
 local isRetail = type(C_AuctionHouse) == "table"
+local isMainline = AddonFactory.isMainline
 
 -- *** Common API ***
-local API_GetNumAuctions = isRetail and C_AuctionHouse.GetNumOwnedAuctions or function() return GetNumAuctionItems("owner") end
-local API_GetNumBids = isRetail and C_AuctionHouse.GetNumBids or function() return GetNumAuctionItems("bidder") end
+local API_GetNumAuctions = isMainline and C_AuctionHouse.GetNumOwnedAuctions or function() return GetNumAuctionItems("owner") end
+local API_GetNumBids = isMainline and C_AuctionHouse.GetNumBids or function() return GetNumAuctionItems("bidder") end
 local API_GetAuctionInfo
 local API_GetBidInfo
 
@@ -25,7 +25,7 @@ local function IsItemSold(status)
 	return (status and status == 1)
 end
 
-if isRetail then
+if isMainline then
 	API_GetAuctionInfo = function(index) 
 			local info = C_AuctionHouse.GetOwnedAuctionInfo(index)
 			local saleStatus = info.status
@@ -156,7 +156,7 @@ local function OnAuctionHouseClosed()
 	addon:StopListeningTo("AUCTION_HOUSE_CLOSED")
 	addon:StopListeningTo("PLAYER_INTERACTION_MANAGER_FRAME_HIDE")
 	
-	if isRetail then
+	if isMainline then
 		addon:StopListeningTo("OWNED_AUCTIONS_UPDATED", ScanAuctions)
 		addon:StopListeningTo("AUCTION_HOUSE_AUCTION_CREATED", ScanAuctions)
 		addon:StopListeningTo("BIDS_UPDATED", ScanBids)
@@ -176,7 +176,7 @@ local function OnAuctionHouseShow()
 	addon:ListenTo("AUCTION_HOUSE_CLOSED", OnAuctionHouseClosed)
 	addon:ListenTo("PLAYER_INTERACTION_MANAGER_FRAME_HIDE", OnAuctioneerHide)
 	
-	if isRetail then
+	if isMainline then
 		addon:ListenTo("OWNED_AUCTIONS_UPDATED", ScanAuctions)
 		addon:ListenTo("AUCTION_HOUSE_AUCTION_CREATED", ScanAuctions)
 		addon:ListenTo("BIDS_UPDATED", ScanBids)
@@ -202,19 +202,20 @@ AddonFactory:OnAddonLoaded(addonName, function()
 		addon = addon,
 		addonName = addonName,
 		characterTables = {
-			["DataStore_Auctions_Characters"] = {
-				ClearAuctionEntries = function(character, AHType, AHZone)
-					-- this function clears the "auctions" or "bids" of a specific AH (faction or goblin)
-					-- AHType = "Auctions" or "Bids" (the name of the table in the DB)
-					-- AHZone = 0 for player faction, or 1 for goblin
-					
-					ClearEntries(character[AHType], AHZone)
-				end,
-			},
+			["DataStore_Auctions_Characters"] = {},
 		},
 		characterIdTables = {
-			["DataStore_Auctions_AuctionsList"] = {},
-			["DataStore_Auctions_BidsList"] = {},
+			["DataStore_Auctions_AuctionsList"] = {
+				ClearAuctions = function(characterID, AHZone)
+					ClearEntries(auctionsList[characterID], AHZone)
+				end,
+				
+			},
+			["DataStore_Auctions_BidsList"] = {
+				ClearBids = function(characterID, AHZone)
+					ClearEntries(bidsList[characterID], AHZone)
+				end,
+			},
 		}
 	})
 	
@@ -227,7 +228,7 @@ AddonFactory:OnPlayerLogin(function()
 	addon:ListenTo("AUCTION_HOUSE_SHOW", OnAuctionHouseShow)
 	addon:ListenTo("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", OnAuctioneerShow)
 	
-	if not isRetail then
+	if not isMainline and not AddonFactory.isMists then
 		addon:SetupOptions()
 	end
 end)
