@@ -6,7 +6,6 @@ local options
 
 local TableRemove = table.remove
 local C_Timer, tonumber, pairs, select, strsplit, floor, time = C_Timer, tonumber, pairs, select, strsplit, floor, time
-local isVanilla = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 
 local function _GetAuctionHouseItemInfo(characterID, list, index)
 	local entries
@@ -111,7 +110,7 @@ end
 -- maximum time left in seconds per auction type : [1] = max 30 minutes, [2] = 2 hours, [3] = 12 hours, [4] = more than 12, but max 48 hours
 -- info : https://wowpedia.fandom.com/wiki/API_C_AuctionHouse.GetReplicateItemTimeLeft    (retail)
 -- info : https://wowpedia.fandom.com/wiki/API_GetAuctionItemTimeLeft   (vanilla & LK)
-local maxHours = isVanilla and 24 or 48
+local maxHours = AddonFactory.isClassic and 24 or 48
 local maxTimeLeft = { 30*60, 2*60*60, 12*60*60, maxHours*60*60 }
 
 local function CheckExpiries()
