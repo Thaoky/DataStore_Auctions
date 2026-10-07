@@ -1,10 +1,10 @@
-## Interface: 11508
+## Interface: 11509
 ## Title: DataStore_Auctions
 ## IconTexture: Interface\Icons\garrison_building_storehouse
 
 ## Notes: Stores information about character auctions and bids
 ## Author: Thaoky (EU-Marécages de Zangar)
-## Version: 2026.10.02
+## Version: 2026.10.07
 ## Dependencies: DataStore
 ## SavedVariables: DataStore_Auctions_Characters, DataStore_Auctions_AuctionsList, DataStore_Auctions_BidsList, DataStore_Auctions_Options
 ## X-Category: Interface Enhancements
